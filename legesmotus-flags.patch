@@ -1,0 +1,27 @@
+--- legesmotus-0.2.2/common.mak~	2009-07-19 19:30:23.000000000 +0200
++++ legesmotus-0.2.2/common.mak	2010-04-26 16:53:54.130756239 +0200
+@@ -66,15 +66,8 @@
+ 
+ INCLUDES = -I$(BASEDIR)
+ 
+-CFLAGS += -Wall
+-
+-ifeq ($(DEBUG),1)
+-CFLAGS += -g -O0
+-else
+-CFLAGS += -O2
+-endif
+-
+ LDFLAGS += $(CFLAGS)
++LDFLAGS += $(OLDFLAGS)
+ CFLAGS += $(FLAGS_GL) $(INCLUDES)
+ ifeq ($(MACHINE),Windows)
+ LIBS += -lwsock32
+@@ -82,6 +75,7 @@
+ CLIENTFLAGS = $(FLAGS_SDL)
+ CLIENTLIBS = $(LIBS_GL) $(LIBS) $(LIBS_SDL)
+ 
++CFLAGS += $(OPTFLAGS)
+ CXXFLAGS += $(CFLAGS) -fno-rtti
+ 
+ H_GL	= $(CLIENT)/compat_gl.h
