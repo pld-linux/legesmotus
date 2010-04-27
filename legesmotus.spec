@@ -1,17 +1,15 @@
-# $Revision: 1.1 $, $
-#
-# TODO: pl
-#
+# $Revision: 1.2 $, $
 Summary:	Networked, team-based, 2D shooter
-#Summary(pl.UTF-8):	-
+Summary(pl.UTF-8):	Sieciowa strzelanka 2D
 Name:		legesmotus
-Version:	0.2.2
+Version:	0.3.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Games
 Source0:	http://downloads.sourceforge.net/legesmotus/%{name}-%{version}.tar.gz
-# Source0-md5:	f28d8e51f5e994f73b4122d4334aa04e
+# Source0-md5:	4b22f79c4dbf00a228d7a8802512bbe9
 Patch0:		%{name}-flags.patch
+Patch1:		%{name}-desktop.patch
 URL:		http://legesmotus.cs.brown.edu/
 BuildRequires:	SDL_image-devel
 BuildRequires:	SDL_mixer-devel
@@ -24,11 +22,16 @@ zero-gravity. Using only the force from jumping off of walls and the
 recoil from their guns, players must travel across the arena to lower
 their opponent's gate.
 
-#%%description -l pl.UTF-8
+%description -l pl.UTF-8
+Leges Motus to sieciowa strzelanka w 2D, której akcja toczy się w
+świecie pozbawionym grawitacji. Zadaniem gracza, poruszającego się
+wyłącznie za pomocą skoków i siły wystrzałów, jest przemierzanie
+planszy aby niszcyć bramy przeciwników.
 
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 ./configure \
@@ -41,10 +44,13 @@ their opponent's gate.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %{__make} install \
 	MANDIR=%{_mandir} \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install data/sprites/blue_head32.png $RPM_BUILD_ROOT%{_pixmapsdir}/%{name}.png
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -55,3 +61,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/games/legesmotus
 %{_mandir}/man6/*.6*
+%{_desktopdir}/legesmotus.desktop
+%{_pixmapsdir}/legesmotus.png
