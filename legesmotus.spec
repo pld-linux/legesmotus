@@ -1,4 +1,4 @@
-# $Revision: 1.2 $, $
+# $Revision: 1.3 $, $
 Summary:	Networked, team-based, 2D shooter
 Summary(pl.UTF-8):	Sieciowa strzelanka 2D
 Name:		legesmotus
@@ -11,9 +11,14 @@ Source0:	http://downloads.sourceforge.net/legesmotus/%{name}-%{version}.tar.gz
 Patch0:		%{name}-flags.patch
 Patch1:		%{name}-desktop.patch
 URL:		http://legesmotus.cs.brown.edu/
+BuildRequires:	OpenGL-GLU-devel
+BuildRequires:	OpenGL-devel
 BuildRequires:	SDL_image-devel
 BuildRequires:	SDL_mixer-devel
 BuildRequires:	SDL_ttf-devel
+BuildRequires:	desktop-file-utils
+BuildRequires:	libstdc++-devel
+BuildRequires:	which
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -40,7 +45,9 @@ planszy aby niszcyć bramy przeciwników.
 %{__make} \
 	CXX="%{__cxx}" \
 	OPTFLAGS="%{rpmcxxflags}" \
-	OLDFLAGS="%{rpmldflags}"
+	OLDFLAGS="%{rpmldflags}" \
+	LIBS_GL="-lGL" \
+	XDIR=%{_prefix}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -48,6 +55,7 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %{__make} install \
 	MANDIR=%{_mandir} \
+	XDIR=%{_prefix} \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install data/sprites/blue_head32.png $RPM_BUILD_ROOT%{_pixmapsdir}/%{name}.png
