@@ -1,13 +1,13 @@
-# $Revision: 1.3 $, $
+# $Revision: 1.4 $, $
 Summary:	Networked, team-based, 2D shooter
 Summary(pl.UTF-8):	Sieciowa strzelanka 2D
 Name:		legesmotus
-Version:	0.3.0
+Version:	0.4.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Games
 Source0:	http://downloads.sourceforge.net/legesmotus/%{name}-%{version}.tar.gz
-# Source0-md5:	4b22f79c4dbf00a228d7a8802512bbe9
+# Source0-md5:	9ce454f8482942fd5dd0d9209add53b9
 Patch0:		%{name}-flags.patch
 Patch1:		%{name}-desktop.patch
 URL:		http://legesmotus.cs.brown.edu/
@@ -71,3 +71,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/*.6*
 %{_desktopdir}/legesmotus.desktop
 %{_pixmapsdir}/legesmotus.png
+%{_iconsdir}/hicolor/256x256/legesmotus.png
