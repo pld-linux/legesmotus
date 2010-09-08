@@ -1,28 +1,34 @@
---- legesmotus-0.3.0/common.mak~	2010-04-25 00:40:51.000000000 +0200
-+++ legesmotus-0.3.0/common.mak	2010-04-27 15:49:16.748823957 +0200
-@@ -109,16 +109,10 @@
+--- legesmotus-0.4.0/common.mk~	2010-09-03 21:22:37.000000000 +0200
++++ legesmotus-0.4.0/common.mk	2010-09-08 08:42:15.599068157 +0200
+@@ -169,21 +169,18 @@
  
  INCLUDES = -I$(BASEDIR)
  
 -CFLAGS += -Wall
  CXXFLAGS += -Wnon-virtual-dtor
  
--ifeq ($(DEBUG),1)
-- CFLAGS += -g -O0
--else
-- CFLAGS += -O2
--endif
--
+ ifeq ($(DEBUG),1)
+  RELEASE = debug
+- CFLAGS += -g -O0 -DLM_DEBUG
++ CFLAGS += -g -DLM_DEBUG
+ else
+  RELEASE = release
+  # Take O-flag from CFLAGS if we already have it set
+- ifneq ($(filter -O%,$(CFLAGS)),)
+-  CFLAGS += -O2
+- endif
+ endif
+ 
  LDFLAGS += $(CFLAGS)
 +LDFLAGS += $(OLDFLAGS)
  CFLAGS += $(FLAGS_GL) $(INCLUDES)
- ifeq ($(MACHINE),Windows)
-  LIBS += -lwsock32
-@@ -126,6 +120,7 @@
+ 
+ # Windows needs Winsock2 for BSD sockets
+@@ -194,6 +191,7 @@
  CLIENTFLAGS = $(FLAGS_SDL)
  CLIENTLIBS = $(LIBS_GL) $(LIBS) $(LIBS_SDL)
  
 +CFLAGS += $(OPTFLAGS)
- CXXFLAGS += $(CFLAGS) -fno-rtti
+ CXXFLAGS += $(CFLAGS)
  
- %.o: %.rc
+ # Out-of-tree build madness
