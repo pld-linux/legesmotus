@@ -1,4 +1,3 @@
-# $Revision: 1.4 $, $
 Summary:	Networked, team-based, 2D shooter
 Summary(pl.UTF-8):	Sieciowa strzelanka 2D
 Name:		legesmotus
