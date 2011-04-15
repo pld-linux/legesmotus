@@ -9,7 +9,7 @@ Source0:	http://downloads.sourceforge.net/legesmotus/%{name}-%{version}.tar.gz
 # Source0-md5:	9ce454f8482942fd5dd0d9209add53b9
 Patch0:		%{name}-flags.patch
 Patch1:		%{name}-desktop.patch
-URL:		http://legesmotus.cs.brown.edu/
+URL:		http://sourceforge.net/projects/legesmotus/
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL_image-devel
